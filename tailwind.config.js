@@ -6,16 +6,17 @@ module.exports = {
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
 	],
 	theme: {
-		boxShadow: {
-			'lg': '0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4)'
-		},
 		fontFamily: {
+			average: ["Average", "sans-serif"],
+			cormorant: ["Cormorant", "sans-serif"],
+			cormorantUnicase: ["CormorantUnicase", "sans-serif"],
 			greatVibes: ["GreatVibes", "sans-serif"],
 			poppins: ["Poppins", "sans-serif"],
+			roboto: ["Roboto", "sans-serif"],
 		},
 		screens: {
-			'sm': '384px',
 			'md': '448px',
+			'lg': '756px',
 		},
 		extend: {
 			backgroundImage: {
@@ -24,9 +25,10 @@ module.exports = {
 				"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
 			},
 			keyframes: {
-				zoomIn: {
+				fadeIn: {
 					'0%': {opacity: 0},
-					'50%': {opacity: 1},
+					'25%': {opacity: 1},
+					'75%': {opacity: 1},
 					'100%': {opacity: 0},
 				},
 			},

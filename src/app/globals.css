@@ -4,8 +4,24 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 @font-face {
+  font-family: "Average";
+  src: url("/fonts/Average-Regular.ttf");
+}
+@font-face {
+  font-family: "Cormorant";
+  src: url("/fonts/Cormorant-Regular.ttf");
+}
+@font-face {
+  font-family: "CormorantUnicase";
+  src: url("/fonts/CormorantUnicase-Regular.ttf");
+}
+@font-face {
   font-family: "GreatVibes";
   src: url("/fonts/GreatVibes-Regular.ttf");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Regular.ttf");
 }
 
 :root {
