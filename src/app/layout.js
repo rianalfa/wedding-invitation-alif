@@ -4,8 +4,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Alif & Indah",
-  description: "Alif & Indah's Wedding Invitation Website",
+  title: process.env.APP_NAME,
+  description: process.env.APP_DESCRIPTION,
 };
 
 export default function RootLayout({ children }) {

@@ -43,7 +43,7 @@ export default function User({params}) {
 							<div className="flex flex-col justify-center items-center font-cormorant h-full">
 								<p className="font-roboto text-lg md:text-base font-bold uppercase mb-7 md:mb-6">The Wedding of</p>
 								<p className="font-greatVibes text-[30px] md:text-[50px] font-normal tracking-wide">Alif & Indah</p>
-								<p className="md:text-lg mt-6 mb-[75%] md:mb-[8%]">Sabtu, 29 Juni 2024</p>
+								<p className="md:text-xl mt-6 mb-[75%] md:mb-[8%]">Sabtu, 29 Juni 2024</p>
 								<p className="">Kepada Yth.</p>
 								<p className="font-bold mt-3">{user.name}{user.partner && ' & '+user.partner}</p>
 
