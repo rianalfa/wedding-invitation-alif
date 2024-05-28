@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import { ChangingImages, OnVisible } from './transitions'
 import { AttendanceConfirmation, CustomLeftArrow, CustomRightArrow, Gallery, ImageForChangingImages, Messages } from './components'
-import { Transition, TransitionChild } from '@headlessui/react'
+import { TransitionChild } from '@headlessui/react'
 import Slider from 'react-slick'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
@@ -213,7 +213,7 @@ export function FifthSection() {
     return (
         <div className="p-[10px] w-full max-w-6xl mx-auto">
             <OnVisible>
-                <div className="flex flex-col justify-between items-center space-y-5 w-full h-screen md:py-[15px]">
+                <div className="flex flex-col justify-between items-center space-y-5 w-full min-h-screen md:py-[15px]">
                     <div className="bg-[#585858] w-full h-[1.5px] md:mb-[15px]" />
                     <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
                         <div className="flex flex-col items-center space-y-5 w-full">
@@ -234,7 +234,7 @@ export function FifthSection() {
                                     Save to calendar
                                 </a>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 place-items-center w-full pt-5">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center w-full pt-5">
                                 <OnVisible>
                                     <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
                                         <div className="flex flex-col items-center text-[#585858] leading-[1.1em] w-full">
@@ -248,7 +248,7 @@ export function FifthSection() {
                                             </p>
                                             <div className="mt-[15px] mb-[10px] pt-[15px] pb-[10px]">
                                                 <a className="font-average text-xs md:text-base text-[#3C3C3C] font-light leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
-                                                    href="#" target="_blank">
+                                                    href="https://maps.app.goo.gl/FahZ8LkSQp33Ho8W7" target="_blank">
                                                     Google Maps
                                                 </a>
                                             </div>
@@ -268,7 +268,7 @@ export function FifthSection() {
                                             </p>
                                             <div className="mt-[15px] mb-[10px] pt-[15px] pb-[10px]">
                                                 <a className="font-average text-xs md:text-base text-[#3C3C3C] font-light leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
-                                                    href="#" target="_blank">
+                                                    href="https://maps.app.goo.gl/FahZ8LkSQp33Ho8W7" target="_blank">
                                                     Google Maps
                                                 </a>
                                             </div>
@@ -345,7 +345,7 @@ export function SeventhSection() {
     )
 }
 
-export function EighthSection() {
+export function EighthSection({name="", userId=0}) {
     return (
         <div className="bg-[#E8E2E2] w-full">
             <div className="flex flex-col items-center space-y-5 bg-white shadow-lg mx-[5%] md:mx-[12%] mb-[10%] md:mb-[22%] p-[10px]">
@@ -365,7 +365,7 @@ export function EighthSection() {
                     </TransitionChild>
                 </OnVisible>
 
-                <AttendanceConfirmation />
+                <AttendanceConfirmation name={name} userId={userId} />
 
                 <OnVisible>
                     <TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
