@@ -52,10 +52,10 @@ export function ChangingImages({children, className=""}) {
                 infinite={true}
                 fade={true}
                 autoplay={true}
-                autoplaySpeed={10000}
+                autoplaySpeed={8000}
                 easing="in-out"
                 slidesToShow={1}
-                speed={5000}
+                speed={3000}
                 className="w-full h-full"
             >
                 {children}

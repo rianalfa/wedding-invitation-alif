@@ -9,7 +9,7 @@ export default function Home() {
 		<main className="relative flex justify-center items-center bg-gray-50 font-roboto text-base md:text-lg w-full min-h-screen">
 			{/* Cover Page */}
 			<section className="absolute top-0 left-0 text-white w-full h-screen z-10">
-					<div className="w-full h-screen bg-[url('/images/home-page.jpg')] bg-local bg-origin-padding bg-center bg-no-repeat bg-cover">
+					<div className="w-full h-screen bg-[url('/images/cover_1.jpg')] bg-local bg-origin-padding bg-center bg-no-repeat bg-cover">
 						<Transition
 							appear={true} show={true}
 							enter="transition-all duration-[3000ms] delay-[500ms] ease-in-out" enterFrom="scale-50 opacity-0" enterTo="scale-100 opacity-100"

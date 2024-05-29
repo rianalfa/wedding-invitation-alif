@@ -14,26 +14,26 @@ const enter = "transition-all duration-[3000ms] delay-[100ms] ease-in-out";
 
 export default function FirstSection() {
     return (
-        <div className="w-full h-screen md:h-[120vh] relative">
-            <OnVisible>
-                <div className="flex flex-col items-center justify-end text-white w-full h-full absolute top-0 left-0">
-                        <TransitionChild enter={enter} enterFrom="scale-0 translate-y-10" enterTo="scale-100 translate-y-0">
-                            <div className="text-center w-full px-2 md:px-6 py-20 z-20">
-                                <p className="font-average text-xl md:text-5xl uppercase tracking-[5.4px] md:tracking-[10px] drop-shadow-lg md:drop-shadow-xl">Alif & Indah</p>
-                                <p className="font-cormorantUnicase text-sm md:text-2xl tracking-[3px] md:tracking-[6px] drop-shadow-md md:drop-shadow-lg my-3.5 md:my-5">Sabtu, 29 Juni 2024</p>
-                                <p className="font-cormorantUnicase text-xs md:text-xl tracking-widest leading-5 drop-shadow-md md:drop-shadow-lg">"My heart beats faster as you take my hand, my love grows stronger as you touch my soul."</p>
-                                <p className="font-cormorantUnicase text-xs md:text-xl tracking-widest drop-shadow-md md:drop-shadow-lg">- A.C. Van Cherub</p>
-                            </div>
-                        </TransitionChild>
+        <div className="w-full h-screen md:h-[150vh] relative">
+            <div className="flex flex-col items-center justify-end bg-black/10 text-white w-full h-full pb-20 md:pb-40 absolute top-0 left-0">
+                <OnVisible>
+                    <TransitionChild enter={enter} enterFrom="scale-0 translate-y-10" enterTo="scale-100 translate-y-0">
+                        <div className="text-center w-full px-2 md:px-6 z-20">
+                            <p className="font-average text-xl md:text-5xl uppercase tracking-[5.4px] md:tracking-[10px] drop-shadow-lg md:drop-shadow-xl">Alif & Indah</p>
+                            <p className="font-cormorantUnicase text-sm md:text-2xl tracking-[3px] md:tracking-[6px] drop-shadow-md md:drop-shadow-lg my-3.5 md:my-5">Sabtu, 29 Juni 2024</p>
+                            <p className="font-cormorantUnicase text-xs md:text-xl tracking-widest leading-5 drop-shadow-md md:drop-shadow-lg">"My heart beats faster as you take my hand, my love grows stronger as you touch my soul."</p>
+                            <p className="font-cormorantUnicase text-xs md:text-xl tracking-widest drop-shadow-md md:drop-shadow-lg">- A.C. Van Cherub</p>
+                        </div>
+                    </TransitionChild>
+                </OnVisible>
 
-                    <div className="absolute bottom-0 left-0 w-full h-60 md:h-96 mb-0 z-[15] bg-gradient-to-t from-[#D2D2D2] to-transparent"></div>
-                </div>
+                <div className="absolute bottom-0 left-0 w-full h-60 md:h-96 mb-0 z-[15] bg-gradient-to-t from-[#D2D2D2] to-transparent" />
+            </div>
 
-                <ChangingImages>
-                    <ImageForChangingImages className="w-full h-screen md:h-[120vh]" src="1.jpg" alt="1.jpg" />
-                    <ImageForChangingImages className="w-full h-screen md:h-[120vh]" src="2.jpg" alt="2.jpg" />
-                </ChangingImages>
-            </OnVisible>
+            <ChangingImages>
+                <ImageForChangingImages className="w-full h-screen md:h-[150vh]" src="first_1.jpg" alt="first_1.jpg" />
+                <ImageForChangingImages className="w-full h-screen md:h-[150vh]" src="first_2.jpg" alt="first_2.jpg" objectPosition="bottom" />
+            </ChangingImages>
         </div>
     )
 }
@@ -72,12 +72,11 @@ export function SecondSection() {
                             prevArrow={<CustomLeftArrow />}
                             nextArrow={<CustomRightArrow />}
                         >
-                            {[1,2,3,4,5,6,7].map((i) => {
+                            {[1,2,3,4,5].map((i) => {
                                 return (
                                     <div key={i} className="aspect-square relative">
-                                        {/* <div className="w-full h-full bg-white border-x-2 md:border-x-4 border-[#D2D2D2]"></div> */}
-                                        <Image src={`/images/${i}.jpg`} alt="gambar" fill={true} objectFit="cover" objectPosition="center"
-                                            className="border-x-2 md:border-x-4 border-[#D2D2D2]" />
+                                        <Image src={`/images/second_${i}.jpg`} alt="gambar" fill={true} objectFit="cover" objectPosition="center"
+                                            priority={true} className="border-2 md:border-4 border-[#D2D2D2]" />
                                     </div>
                                 );
                             })}
@@ -118,16 +117,18 @@ export function ThirdSection() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full max-w-6xl mx-auto px-2 md:px-4">
                 <div className="font-cormorant text-[#020202] text-center mb-4">
-                    <div className="bg-white shadow-lg px-[5px] md:px-2 pt-[5px] md:pt-2 pb-[30px] md:pb-[50px]">
-                        <div className="w-full aspect-square bg-gray-400 relative">
-                            <div className="absolute top-0 left-[7.5%] z-0 w-[85%] h-full
-                                shadow-[0_18px_24px_-12px_rgba(0,0,0.7)] md:shadow-[0_30px_35px_-12px_rgba(0,0,0,0.7)]"></div>
-                            <ChangingImages className="z-20">
-                                <ImageForChangingImages className="aspect-square" src="1.jpg" alt="1.jpg" />
-                                <ImageForChangingImages className="aspect-square" src="2.jpg" alt="2.jpg" />
-                            </ChangingImages>
-                        </div>
-                    </div>
+                    <OnVisible>
+                        <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-12" enterTo="opacity-100 translate-y-0">
+                            <div className="bg-white shadow-lg px-[5px] md:px-2 pt-[5px] md:pt-2 pb-[30px] md:pb-[50px]">
+                                <div className="w-full aspect-square bg-gray-400 relative">
+                                    <div className="absolute top-0 left-[7.5%] z-0 w-[85%] h-full
+                                        shadow-[0_18px_24px_-12px_rgba(0,0,0.7)] md:shadow-[0_30px_35px_-12px_rgba(0,0,0,0.7)]"></div>
+                                    <Image src="/images/alif_1.jpg" alt="alif_1.jpg" fill={true} objectFit="cover" objectPosition="bottom" priority={true} />
+                                </div>
+                            </div>
+                        </TransitionChild>
+                    </OnVisible>
+
                     <OnVisible>
                         <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-12" enterTo="opacity-100 translate-y-0">
                             <div className="flex flex-col">
@@ -149,16 +150,18 @@ export function ThirdSection() {
                     </OnVisible>
                 </div>
                 <div className="font-cormorant text-[#020202] text-center mb-4">
-                    <div className="bg-white shadow-lg px-[5px] md:px-2 pt-[5px] md:pt-2 pb-[30px] md:pb-[50px]">
-                        <div className="w-full aspect-square bg-gray-400 relative">
-                            <div className="absolute top-0 left-[7.5%] z-0 w-[85%] h-full
-                                shadow-[0_18px_24px_-12px_rgba(0,0,0.7)] md:shadow-[0_30px_35px_-12px_rgba(0,0,0,0.7)]"></div>
-                            <ChangingImages>
-                                <ImageForChangingImages className="aspect-square" src="3.jpg" alt="3.jpg" />
-                                <ImageForChangingImages className="aspect-square" src="4.jpg" alt="4.jpg" />
-                            </ChangingImages>
-                        </div>
-                    </div>
+                    <OnVisible>
+                        <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-12" enterTo="opacity-100 translate-y-0">
+                            <div className="bg-white shadow-lg px-[5px] md:px-2 pt-[5px] md:pt-2 pb-[30px] md:pb-[50px]">
+                                <div className="w-full aspect-square bg-gray-400 relative">
+                                    <div className="absolute top-0 left-[7.5%] z-0 w-[85%] h-full
+                                        shadow-[0_18px_24px_-12px_rgba(0,0,0.7)] md:shadow-[0_30px_35px_-12px_rgba(0,0,0,0.7)]"></div>
+                                    <Image src="/images/indah_1.jpg" alt="indah_1.jpg" fill={true} objectFit="cover" objectPosition="bottom" priority={true} />
+                                </div>
+                            </div>
+                        </TransitionChild>
+                    </OnVisible>
+
                     <OnVisible>
                         <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-12" enterTo="opacity-100 translate-y-0">
                             <div className="flex flex-col">
@@ -184,13 +187,13 @@ export function ThirdSection() {
     )
 }
 
-export function ForthSection() {
+export function FourthSection() {
     return (
         <div className="w-full h-screen md:h-[150vh]">
             <OnVisible>
-                <TransitionChild enter={enter} enterFrom="scale-0" enterTo="scale-100">
+                <TransitionChild enter={enter} enterFrom="scale-0 opacity-0" enterTo="scale-100 opacity-100">
                     <div className="w-full h-screen md:h-[150vh] relative">
-                        <div className="flex flex-col justify-center items-center font-average text-white text-center uppercase w-full h-full absolute top-0 left-0 z-30">
+                        <div className="flex flex-col justify-center items-center bg-black/25 font-average text-white text-center uppercase w-full h-full absolute top-0 left-0 z-30">
                             <p className="text-sm md:text-2xl leading-4 md:leading-6 tracking-[5.4px] md:tracking-[10px]">Save the date</p>
                             <div className="bg-white w-1 md:w-[5px] h-[15vh] md:h-[30vh] my-5" />
                             <p className="text-[60px] md:text-[98px] leading-[1.3em] md:leading-[100px] tracking-[4px] md:tracking-normal">29 <br/> JUNI <br/> 24</p>
@@ -199,8 +202,8 @@ export function ForthSection() {
                         </div>
 
                         <ChangingImages>
-                            <ImageForChangingImages className="w-full h-screen md:h-[150vh]" src="5.jpg" alt="5.jpg" />
-                            <ImageForChangingImages className="w-full h-screen md:h-[150vh]" src="6.jpg" alt="6.jpg" />
+                            <ImageForChangingImages className="w-full h-screen md:h-[150vh]" src="fourth_1.jpg" alt="fourth_1.jpg" />
+                            <ImageForChangingImages className="w-full h-screen md:h-[150vh]" src="fourth_2.jpg" alt="fourth_2.jpg" />
                         </ChangingImages>
                     </div>
                 </TransitionChild>
@@ -212,75 +215,77 @@ export function ForthSection() {
 export function FifthSection() {
     return (
         <div className="p-[10px] w-full max-w-6xl mx-auto">
-            <OnVisible>
-                <div className="flex flex-col justify-between items-center space-y-5 w-full min-h-screen md:py-[15px]">
-                    <div className="bg-[#585858] w-full h-[1.5px] md:mb-[15px]" />
-                    <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
-                        <div className="flex flex-col items-center space-y-5 w-full">
-                            <p className="font-greatVibes text-[#585858] text-[28px] md:text-[70px] leading-[1.1em] md:leading-[1] tracking-[5.1px] md:tracking-[3px]">Counting Day</p>
-                            <div className="grid grid-cols-4 gap-2 font-average text-[#585858] uppercase w-full py-5 md:py-7">
-                                {['days','hours','minutes','seconds'].map((key) => {
-                                    return (
-                                        <div key={key} className="flex flex-col items-center">
-                                            <p className="text-xl md:text-[70px] md:font-bold leading-5 md:leading-[1]">00</p>
-                                            <p className="text-[9px] md:text-[19px] md:font-semibold leading-[3.1em] md:leading-[1] tracking-[2.4px] md:tracking-normal">{key}</p>
+            <div className="flex flex-col justify-between items-center space-y-5 w-full min-h-screen md:py-[15px]">
+                <div className="bg-[#585858] w-full h-[1.5px] md:mb-[15px]" />
+                    <div className="flex flex-col items-center space-y-5 w-full">                            
+                        <OnVisible>
+                            <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
+                                <div className="flex flex-col items-center space-y-5 w-full">
+                                    <p className="font-greatVibes text-[#585858] text-[28px] md:text-[70px] leading-[1.1em] md:leading-[1] tracking-[5.1px] md:tracking-[3px]">Counting Day</p>
+                                    <div className="grid grid-cols-4 gap-2 font-average text-[#585858] uppercase w-full py-5 md:py-7">
+                                        {['days','hours','minutes','seconds'].map((key) => {
+                                            return (
+                                                <div key={key} className="flex flex-col items-center">
+                                                    <p className="text-xl md:text-[70px] md:font-bold leading-5 md:leading-[1]">00</p>
+                                                    <p className="text-[9px] md:text-[19px] md:font-semibold leading-[3.1em] md:leading-[1] tracking-[2.4px] md:tracking-normal">{key}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                    <div className="pt-[15px] pb-[10px]">
+                                        <a className="font-average text-xs md:text-base text-[#3C3C3C] leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
+                                            href="https://www.google.com/calendar/render?action=TEMPLATE&text&details&dates&location" target="_blank">
+                                            Save to calendar
+                                        </a>
+                                    </div>
+                                </div>
+                            </TransitionChild>
+                        </OnVisible>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center w-full pt-5">
+                            <OnVisible>
+                                <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
+                                    <div className="flex flex-col items-center text-[#585858] leading-[1.1em] w-full">
+                                        <p className="text-[21px] md:text-[30px] font-semibold tracking-[0.4px] md:tracking-[4.7px] uppercase">Wedding Vows</p>
+                                        <p className="font-average md:text-[25px] uppercase md:tracking-[1.8px] my-5 md:my-7">Sabtu, 29 Juni 2024</p>
+                                        <p className="text-[15px] md:text-[20px] font-semibold -tracking-[0.5px] md:-tracking-[0.3px]">Pukul 08.00 WIB - 08.30 WIB</p>
+                                        <p className="font-average md:text-[20px] text-center mb-5">
+                                            Bertempat di<br/>
+                                            Graha Larasati<br/>
+                                            Jl. Taman Makam Pahlawan
+                                        </p>
+                                        <div className="mt-[15px] mb-[10px] pt-[15px] pb-[10px]">
+                                            <a className="font-average text-xs md:text-base text-[#3C3C3C] font-light leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
+                                                href="https://maps.app.goo.gl/FahZ8LkSQp33Ho8W7" target="_blank">
+                                                Google Maps
+                                            </a>
                                         </div>
-                                    );
-                                })}
-                            </div>
-                            <div className="pt-[15px] pb-[10px]">
-                                <a className="font-average text-xs md:text-base text-[#3C3C3C] leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
-                                    href="https://www.google.com/calendar/render?action=TEMPLATE&text&details&dates&location" target="_blank">
-                                    Save to calendar
-                                </a>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 place-items-center w-full pt-5">
-                                <OnVisible>
-                                    <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
-                                        <div className="flex flex-col items-center text-[#585858] leading-[1.1em] w-full">
-                                            <p className="text-[21px] md:text-[30px] font-semibold tracking-[0.4px] md:tracking-[4.7px] uppercase">Wedding Vows</p>
-                                            <p className="font-average md:text-[25px] uppercase md:tracking-[1.8px] my-5 md:my-7">Sabtu, 29 Juni 2024</p>
-                                            <p className="text-[15px] md:text-[20px] font-semibold -tracking-[0.5px] md:-tracking-[0.3px]">Pukul 08.00 WIB - 08.30 WIB</p>
-                                            <p className="font-average md:text-[20px] text-center mb-5">
-                                                Bertempat di<br/>
-                                                Graha Larasati<br/>
-                                                Jl. Taman Makam Pahlawan
-                                            </p>
-                                            <div className="mt-[15px] mb-[10px] pt-[15px] pb-[10px]">
-                                                <a className="font-average text-xs md:text-base text-[#3C3C3C] font-light leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
-                                                    href="https://maps.app.goo.gl/FahZ8LkSQp33Ho8W7" target="_blank">
-                                                    Google Maps
-                                                </a>
-                                            </div>
+                                    </div>
+                                </TransitionChild>
+                            </OnVisible>
+                            <OnVisible>
+                                <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
+                                    <div className="flex flex-col items-center text-[#585858] leading-[1.1em] w-full">
+                                        <p className="text-[21px] md:text-[30px] font-semibold tracking-[0.4px] md:tracking-[4.7px] uppercase">Wedding Reception</p>
+                                        <p className="font-average md:text-[25px] uppercase md:tracking-[1.8px] my-5 md:my-7">Sabtu, 29 Juni 2024</p>
+                                        <p className="text-[15px] md:text-[20px] font-semibold -tracking-[0.5px] md:-tracking-[0.3px]">Pukul 11.00 - 12.00 WIB</p>
+                                        <p className="font-average md:text-[20px] text-center mb-5">
+                                            Bertempat di<br/>
+                                            Graha Larasati<br/>
+                                            Jl. Taman Makam Pahlawan
+                                        </p>
+                                        <div className="mt-[15px] mb-[10px] pt-[15px] pb-[10px]">
+                                            <a className="font-average text-xs md:text-base text-[#3C3C3C] font-light leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
+                                                href="https://maps.app.goo.gl/FahZ8LkSQp33Ho8W7" target="_blank">
+                                                Google Maps
+                                            </a>
                                         </div>
-                                    </TransitionChild>
-                                </OnVisible>
-                                <OnVisible>
-                                    <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
-                                        <div className="flex flex-col items-center text-[#585858] leading-[1.1em] w-full">
-                                            <p className="text-[21px] md:text-[30px] font-semibold tracking-[0.4px] md:tracking-[4.7px] uppercase">Wedding Reception</p>
-                                            <p className="font-average md:text-[25px] uppercase md:tracking-[1.8px] my-5 md:my-7">Sabtu, 29 Juni 2024</p>
-                                            <p className="text-[15px] md:text-[20px] font-semibold -tracking-[0.5px] md:-tracking-[0.3px]">Pukul 11.00 - 12.00 WIB</p>
-                                            <p className="font-average md:text-[20px] text-center mb-5">
-                                                Bertempat di<br/>
-                                                Graha Larasati<br/>
-                                                Jl. Taman Makam Pahlawan
-                                            </p>
-                                            <div className="mt-[15px] mb-[10px] pt-[15px] pb-[10px]">
-                                                <a className="font-average text-xs md:text-base text-[#3C3C3C] font-light leading-4 uppercase border-y border-[#020202] rounded-md md:rounded-[10px] px-4 md:px-8 py-3"
-                                                    href="https://maps.app.goo.gl/FahZ8LkSQp33Ho8W7" target="_blank">
-                                                    Google Maps
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </TransitionChild>
-                                </OnVisible>
-                            </div>
+                                    </div>
+                                </TransitionChild>
+                            </OnVisible>
                         </div>
-                    </TransitionChild>
-                    <div className="bg-[#585858] w-full h-[1.5px] md:mt-[15px]" />
-                </div>
-            </OnVisible>
+                    </div>
+                <div className="bg-[#585858] w-full h-[1.5px] md:mt-[15px]" />
+            </div>
         </div>
     )
 }
@@ -289,7 +294,7 @@ export function SixthSection() {
     return (
         <div className="flex flex-col w-full">
             <OnVisible>
-                <TransitionChild enter={enter} enterFrom="scale-0" enterTo="scale-100">
+                <TransitionChild enter={enter} enterFrom="scale-0 opacity-0" enterTo="scale-100 opacity-100">
                     <div className="w-full relative">
                         <div className="grid place-items-center font-cormorantUnicase text-white text-xs md:text-[20px] font-light leading-[1.9em] md:leading-[44px] tracking-[1px] md:tracking-normal text-center w-full h-full absolute top-0 left-0 z-20">
                             <p>
@@ -302,8 +307,8 @@ export function SixthSection() {
                         <div className="absolute bottom-0 left-0 w-full h-24 md:h-0 mb-0 z-[15] bg-gradient-to-t from-[#D2D2D2] to-transparent"></div>
 
                         <ChangingImages className="w-full">
-                            <ImageForChangingImages className="w-full h-[33vh] md:h-[55vh]" src="5.jpg" alt="5.jpg" />
-                            <ImageForChangingImages className="w-full h-[33vh] md:h-[55vh]" src="6.jpg" alt="6.jpg" />
+                            <ImageForChangingImages className="w-full h-[33vh] md:h-[70vh]" src="sixth_1.jpg" alt="sixth_1.jpg" objectPosition="bottom" />
+                            <ImageForChangingImages className="w-full h-[33vh] md:h-[70vh]" src="sixth_22.jpg" alt="sixth_2.jpg" />
                         </ChangingImages>
                     </div>
                 </TransitionChild>
@@ -348,7 +353,7 @@ export function SeventhSection() {
 export function EighthSection({name="", userId=0}) {
     return (
         <div className="bg-[#E8E2E2] w-full">
-            <div className="flex flex-col items-center space-y-5 bg-white shadow-lg mx-[5%] md:mx-[12%] mb-[10%] md:mb-[22%] p-[10px]">
+            <div className="flex flex-col items-center space-y-5 bg-white rounded-b-full shadow-[0_20px_40px_-10px_rgba(0,0,0,0.3)] max-w-4xl mx-auto mb-[25%] md:mb-[22%] p-[10px]">
                 <OnVisible>
                     <TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
                         <div className="w-full py-[5%] md:py-[10%]">
@@ -368,7 +373,7 @@ export function EighthSection({name="", userId=0}) {
                 <AttendanceConfirmation name={name} userId={userId} />
 
                 <OnVisible>
-                    <TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
+                    <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
                         <div className="w-full">
                             <p className="font-greatVibes text-[#585858] text-[28px] md:text-[70px] leading-[1.1em] md:leading-none tracking-[5.1px] md:tracking-[3px] text-center font-light my-[5%]">Wish</p>
                         </div>
@@ -376,7 +381,7 @@ export function EighthSection({name="", userId=0}) {
                 </OnVisible>
 
                 <OnVisible>
-                    <TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
+                    <TransitionChild enter={enter} enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
                         <p className="font-cormorantUnicase text-[#020202] text-xs md:text-xl font-light text-center leading-[1.9em] md:leading-[44px] tracking-[1px] md:tracking-normal mb-[5%]">
                             Berikan ucapan dan doa untuk kami.
                         </p>
@@ -384,6 +389,21 @@ export function EighthSection({name="", userId=0}) {
                 </OnVisible>
 
                 <Messages />
+
+                <OnVisible className="w-full">
+                    <TransitionChild enter={enter} enterFrom="translate-y-24 opacity-0 rotate-180" enterTo="translate-y-0 opacity-100 rotate-0">
+                        <div className="aspect-square w-full relative">
+                            <div className="absolute top-0 left-0 z-40 shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.5)] md:shadow-[inset_0_4px_8px_0_rgba(0,0,0,0.5)] rounded-full w-full h-full" />
+                            <div className="border-[8px] md:border-[24px] border-[#d4e0cf] rounded-full w-full h-full">
+                                <div className="border-[12px] md:border-[32px] border-[#e9e6d5] rounded-full w-full h-full relative z-30">
+                                    <Image src={`/images/eighth_1.jpg`} alt="eighth_1.jpg" fill={true} objectFit="cover" objectPosition="bottom"
+                                        className="rounded-full z-20" />
+                                    <div className="absolute top-0 left-0 z-40 shadow-[inset_0_8px_16px_0_rgba(0,0,0,0.7)] md:shadow-[inset_0_16px_32px_0_rgba(0,0,0,0.7)] rounded-full w-full h-full" />
+                                </div>
+                            </div>
+                        </div>
+                    </TransitionChild>
+                </OnVisible>
             </div>
         </div>
     )
@@ -391,7 +411,8 @@ export function EighthSection({name="", userId=0}) {
 
 export function NinthSection() {
     return (
-        <div className="flex justify-center items-end w-full h-screen bg-[url('/images/home-page.jpg')] bg-local bg-origin-padding bg-center bg-no-repeat bg-cover pb-[10%]">
+        <div className="flex justify-center items-end w-full h-screen bg-[url('/images/cover_1.jpg')] bg-local bg-origin-padding bg-center bg-no-repeat bg-cover pb-[10%] relative">
+            <div className="absolute top-0 left-0 w-full h-60 md:h-96 mb-0 z-20 bg-gradient-to-b from-[#D2D2D2] via-[#D2D2D280] to-transparent" />
             <OnVisible>
                 <TransitionChild enter="transition-all duration-[3000ms] delay-[500ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
                     <div className="flex flex-col justify-end items-center font-cormorant text-white h-full">

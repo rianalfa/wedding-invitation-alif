@@ -26,6 +26,7 @@
     "react-intersection-observer": "^9.10.2",
     "react-notifications": "^1.7.4",
     "react-slick": "^0.30.2",
+    "react-zoom-pan-pinch": "^3.4.4",
     "serverless-mysql": "^1.5.5",
     "slick-carousel": "^1.8.1",
     "sql": "^0.78.0"

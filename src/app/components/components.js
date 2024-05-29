@@ -1,13 +1,19 @@
 import { faClock } from "@fortawesome/free-regular-svg-icons";
-import { TransitionChild } from "@headlessui/react";
+import { Transition, TransitionChild } from "@headlessui/react";
 import Image from "next/image";
-import { useCallback, useRef, useState } from "react";
-const { faChevronRight, faChevronLeft, faHeart } = require("@fortawesome/free-solid-svg-icons");
+import { useCallback, useState } from "react";
+const { faChevronRight, faChevronLeft, faHeart, faXmark } = require("@fortawesome/free-solid-svg-icons");
 const { FontAwesomeIcon } = require("@fortawesome/react-fontawesome");
 import { NotificationManager } from "react-notifications";
 import { OnVisible } from "./transitions";
-import ImgsViewer from "react-images-viewer";
 import moment from 'moment';
+import Slider from "react-slick";
+
+import {
+	TransformWrapper,
+	TransformComponent,
+	useControls,
+  } from "react-zoom-pan-pinch";
 
 export function CustomRightArrow(props) {
 	const { className, style, onClick } = props;
@@ -25,26 +31,28 @@ export function CustomLeftArrow(props) {
 	</button>;
 };
 
-export function ImageForChangingImages({className="w-full h-full", src="", alt=""}) {
+export function ImageForChangingImages({className="w-full h-full", src="", alt="", objectPosition="center"}) {
 	return (
 		<div className={className}>
-			<Image src={`/images/${src}`} alt={alt} fill={true} objectFit="cover" objectPosition="center" />
+			<Image src={`/images/${src}`} alt={alt} fill={true} objectFit="cover" objectPosition={objectPosition} priority={true} />
 		</div>
 	);
 }
 
+export function ZoomControl() {
+	const { zoomIn, zoomOut, resetTransform } = useControls();
+
+	return (
+		<div className="flex space-x-2 w-full justify-center">
+			<button onClick={() => zoomIn()}>+</button>
+			<button onClick={() => zoomOut()}>-</button>
+			<button onClick={() => resetTransform()}>x</button>
+		</div>
+	)
+}
+
 export function Gallery() {
-	const maxImg = useRef(6);
-	const [isOpen, setIsOpen] = useState(false);
 	const [currImg, setCurrImg] = useState(0);
-
-	const openViewer = useCallback((num) => {
-		if (num > maxImg.current) num = 0;
-		if (num < 0) num = maxImg.current;
-		setCurrImg(num);
-
-		setIsOpen(true);
-	}, []);
 
 	return (
 		<div className="flex flex-col space-y-[5px] bg-[#D2D2D2] w-full p-[10px] md:py-[6%]">
@@ -62,8 +70,8 @@ export function Gallery() {
 						{[1,2,3,4,5,6].map((i) => {
 							return (
 								<button key={i} type="button" className="aspect-[2/3] relative overflow-hidden"
-									onClick={() => openViewer(i-1)}>
-									<Image key={i} src={`/images/${i}.jpg`} alt={`${i}.jpg`} fill={true} objectFit="cover" objectPosition="center" />
+									onClick={() => setCurrImg(i)}>
+									<Image key={i} src={`/images/gallery_${i}.jpg`} alt={`gallery_${i}.jpg`} fill={true} objectFit="cover" objectPosition="center" priority={true} />
 								</button>
 							)
 						})}
@@ -71,21 +79,52 @@ export function Gallery() {
 				</TransitionChild>
 			</OnVisible>
 
-			<ImgsViewer imgs={[
-				{src: '/images/1.jpg'},
-				{src: '/images/2.jpg'},
-				{src: '/images/3.jpg'},
-				{src: '/images/4.jpg'},
-				{src: '/images/5.jpg'},
-				{src: '/images/6.jpg'},
-			]} 	isOpen={isOpen}
-				currImg={currImg}
-				onClickPrev={() => openViewer(currImg-1)}
-				onClickNext={() => openViewer(currImg+1)}
-				onClose={() => setIsOpen(false)}
-				backdropCloseable={true}
-				imgCountSeparator=" of "
-			/>
+			<Transition show={currImg !== 0}
+				enter="transition-all duration-[1000ms] delay-[100ms] ease-in-out" enterFrom="scale-0 opacity-0" enterTo="scale-100 opacity-100"
+				leave="transition-all duration-[1000ms] delay-[100ms] ease-in-out" leaveFrom="scale-100 opacity-100" leaveTo="scale-0 opacity-0"
+			>
+				<div className="fixed -top-1 left-0 z-50 w-screen max-w-screen h-screen max-h-screen">
+					<div className="relative flex flex-col bg-black/75 w-full h-full">
+						<div className="absolute top-0 right-0 z-[60] flex justify-end items-center space-x-2 md:space-x-4 w-auto px-5 md:px-10 py-3 md:py-6">
+							<button onClick={() => setCurrImg(0)}>
+								<FontAwesomeIcon icon={faXmark} className="text-white text-lg md:text-2xl md:font-bold" />
+							</button>
+						</div>
+						<div className="pr-1.5 md:pr-4">
+							<Slider
+								initialSlide={currImg-1}
+								infinite={true}
+								lazyLoad="anticipated"
+								easing="in-out"
+								slidesToShow={1}
+								speed={1000}
+								prevArrow={<CustomLeftArrow />}
+								nextArrow={<CustomRightArrow />}
+							>
+								{[1,2,3,4,5,6].map((i) => {
+									return (
+										<div key={i} className="w-full h-screen p-3 md:p-6">
+											<div className="relative flex justify-center items-center w-full h-full mx-auto">
+												<TransformWrapper
+													initialScale={window.outerWidth >= 484 ? 0.4 : 1}
+													minScale={window.outerWidth >= 484 ? 0.4 : 1}
+													maxScale={2}
+													centerOnInit={true}
+												>
+													<TransformComponent wrapperClass="max-h-full">
+														<img src={`/images/gallery_${i}.jpg`} alt={`gallery_${i}.jpg`} 
+															className="transition-transform duration-300 ease-in-out" />
+													</TransformComponent>
+												</TransformWrapper>
+											</div>
+										</div>
+									);
+								})}
+							</Slider>
+						</div>
+					</div>
+				</div>
+			</Transition>
 		</div>
 	)
 }
@@ -207,7 +246,6 @@ export function Messages() {
 				}
 			}).then((data) => {
 				const messages = JSON.parse(data.data);
-				console.log(messages);
 				setMessages(messages);
 			});
 	});
@@ -259,7 +297,7 @@ export function Messages() {
 	return (
 		<OnVisible className="w-full mx-auto">
 			<TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
-				<div className="flex flex-col border-[1.5px] border-stone-300 rounded-xl md:rounded-3xl w-full max-w-lg mx-auto py-4 md:py-8">
+				<div className="flex flex-col border-[1.5px] border-stone-300 rounded-xl md:rounded-3xl w-full max-w-md mx-auto mb-[5%] md:mb-[10%] py-4 md:py-8">
 					<div className="flex flex-col space-y-5 border-b-[1.5px] border-b-stone-300 px-4 md:px-8 pb-4 md:pb-6">
 						<input type="text" name="name" className="bg-white text-sm md:text-base font-light text-[#606266] border border-stone-100 rounded-lg md:rounded-xl px-4 py-2
 							focus:bg-white focus:ring-1 focus:ring-blue-600 focus:outline-0
