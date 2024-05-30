@@ -1,7 +1,7 @@
 import { faClock } from "@fortawesome/free-regular-svg-icons";
 import { Transition, TransitionChild } from "@headlessui/react";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 const { faChevronRight, faChevronLeft, faHeart, faXmark } = require("@fortawesome/free-solid-svg-icons");
 const { FontAwesomeIcon } = require("@fortawesome/react-fontawesome");
 import { NotificationManager } from "react-notifications";
@@ -47,6 +47,55 @@ export function ZoomControl() {
 			<button onClick={() => zoomIn()}>+</button>
 			<button onClick={() => zoomOut()}>-</button>
 			<button onClick={() => resetTransform()}>x</button>
+		</div>
+	)
+}
+
+export function CountingDay() {
+	const countDownDate = useRef(new Date("Jun 29, 2024 08:30:00").getTime());
+	const Ref = useRef(null);
+
+	const [countDown, setCountDown] = useState({
+		'days': 0,
+		'hours': 0,
+		'minutes': 0,
+		'seconds': 0,
+	});
+
+	const getTimeRemaining = () => {
+        const distance = countDownDate.current - (new Date().getTime());
+		const countDown = {
+			'days': Math.floor(distance / (1000 * 60 * 60 * 24)),
+			'hours': Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+			'minutes': Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+			'seconds': Math.floor((distance % (1000 * 60)) / 1000),
+		}
+
+        setCountDown(countDown);
+    };
+
+	const clearTimer = () => { 
+        if (Ref.current) clearInterval(Ref.current);
+        const id = setInterval(() => {
+            getTimeRemaining();
+        }, 1000);
+        Ref.current = id;
+    };
+
+	useEffect(() => {
+        clearTimer();
+    }, []);
+
+	return (
+		<div className="grid grid-cols-4 gap-2 font-average text-[#585858] uppercase w-full py-5 md:py-7">
+			{['days','hours','minutes','seconds'].map((key) => {
+				return (
+					<div key={key} className="flex flex-col items-center">
+						<p className="text-xl md:text-[70px] md:font-bold leading-5 md:leading-[1]">{countDown[key]}</p>
+						<p className="text-[9px] md:text-[19px] md:font-semibold leading-[3.1em] md:leading-[1] tracking-[2.4px] md:tracking-normal">{key}</p>
+					</div>
+				);
+			})}
 		</div>
 	)
 }

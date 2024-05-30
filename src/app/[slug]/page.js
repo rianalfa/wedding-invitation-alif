@@ -69,7 +69,7 @@ export default function User({params}) {
 					<FourthSection />
 					<FifthSection />
 					<SixthSection />
-					<SeventhSection />
+					{/* <SeventhSection /> */}
 					<EighthSection name={user.name} userId={user.id} />
 					<NinthSection />	
 				</section>
