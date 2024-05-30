@@ -91,7 +91,7 @@ export function CountingDay() {
 			{['days','hours','minutes','seconds'].map((key) => {
 				return (
 					<div key={key} className="flex flex-col items-center">
-						<p className="text-xl md:text-[70px] md:font-bold leading-5 md:leading-[1]">{countDown[key]}</p>
+						<p className="text-xl md:text-[70px] md:font-bold leading-5 md:leading-[1]">{countDown[key] <= 9 && '0'}{countDown[key]}</p>
 						<p className="text-[9px] md:text-[19px] md:font-semibold leading-[3.1em] md:leading-[1] tracking-[2.4px] md:tracking-normal">{key}</p>
 					</div>
 				);
@@ -114,7 +114,7 @@ export function Gallery() {
 			</OnVisible>
 
 			<OnVisible>
-				<TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0" enterTo="opacity-100">
+				<TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
 					<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 mx-[5%] md:mx-[7%]">
 						{[1,2,3,4,5,6].map((i) => {
 							return (
@@ -348,10 +348,10 @@ export function Messages() {
 			<TransitionChild enter="transition-all duration-[3000ms] delay-[100ms] ease-in-out" enterFrom="opacity-0 translate-y-24" enterTo="opacity-100 translate-y-0">
 				<div className="flex flex-col border-[1.5px] border-stone-300 rounded-xl md:rounded-3xl w-full max-w-md mx-auto mb-[5%] md:mb-[10%] py-4 md:py-8">
 					<div className="flex flex-col space-y-5 border-b-[1.5px] border-b-stone-300 px-4 md:px-8 pb-4 md:pb-6">
-						<input type="text" name="name" className="bg-white text-sm md:text-base font-light text-[#606266] border border-stone-100 rounded-lg md:rounded-xl px-4 py-2
+						<input type="text" name="name" className="bg-white text-sm md:text-base font-light text-[#606266] border border-stone-200 rounded-lg md:rounded-xl px-4 py-2
 							focus:bg-white focus:ring-1 focus:ring-blue-600 focus:outline-0
 							transition-color ease-in-out duration-200 delay-50" placeholder="Nama" value={formData.name} onChange={handleInput} />
-						<textarea type="text" name="message" className="bg-white text-sm md:text-base font-light text-[#606266] border border-stone-100 rounded-lg md:rounded-xl max-h-24 px-4 py-2
+						<textarea type="text" name="message" className="bg-white text-sm md:text-base font-light text-[#606266] border border-stone-200 rounded-lg md:rounded-xl max-h-24 px-4 py-2
 							focus:bg-white focus:ring-1 focus:ring-blue-600 focus:outline-0
 							transition-color ease-in-out duration-200 delay-50"
 							placeholder="Pesan" value={formData.message} onChange={handleInput} />
