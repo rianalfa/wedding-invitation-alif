@@ -21,7 +21,7 @@ export default function FirstSection() {
                         <div className="text-center w-full px-2 md:px-6 z-20">
                             <p className="font-average text-xl md:text-5xl uppercase tracking-[5.4px] md:tracking-[10px] drop-shadow-lg md:drop-shadow-xl">Alif & Indah</p>
                             <p className="font-cormorantUnicase text-sm md:text-2xl tracking-[3px] md:tracking-[6px] drop-shadow-md md:drop-shadow-lg my-3.5 md:my-5">Sabtu, 29 Juni 2024</p>
-                            <p className="font-cormorantUnicase text-xs md:text-xl tracking-widest leading-5 drop-shadow-md md:drop-shadow-lg">"Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."</p>
+                            <p className="font-cormorantUnicase text-xs md:text-xl tracking-widest leading-5 drop-shadow-md md:drop-shadow-lg">&quot;Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sungguh, pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir.&quot;</p>
                             <br/>
                             <p className="font-cormorantUnicase text-xs md:text-xl tracking-widest drop-shadow-md md:drop-shadow-lg">QS. Ar-Rum: 21-</p>
                         </div>
@@ -136,7 +136,7 @@ export function ThirdSection() {
                                 <div className="flex items-start justify-center w-full h-16 md:h-20">
                                     <p className="font-bold md:font-semibold md:text-xl leading-4 md:leading-6 max-w-72 md:max-w-96">
                                         Putra dari <br />
-                                        Bapak Endro Budi Darmawanm S.E., M.Si. & Ibu Mas'amah, S.Sos., M.Si.
+                                        Bapak Endro Budi Darmawanm S.E., M.Si. & Ibu Mas&apos;amah, S.Sos., M.Si.
                                     </p>
                                 </div>
                                 <div className="mt-6 md:mt-12">
@@ -284,7 +284,7 @@ export function SixthSection() {
                     <OnVisible className="px-2 md:px-4">
                         <TransitionChild enter={enter} enterFrom="translate-y-24 opacity-0" enterTo="translate-y-0 opacity-100">
                             <p>
-                                "My heart beats faster as you take my hand, my love grows stronger as you touch my soul."
+                                &quot;My heart beats faster as you take my hand, my love grows stronger as you touch my soul.&quot;
                                 <br/><br/>
                                 - A.C. Van Cherub -
                             </p>
